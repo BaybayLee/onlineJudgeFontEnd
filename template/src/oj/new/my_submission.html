@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <link rel="shortcut icon" href="../../../../static/src/img/alibaba.png">
+    <script src="../../../../static/src/js/config.js"></script>
+    <script src="../../../../static/src/js/require.js"></script>
+    <script src="../../../../static/src/js/lib/bootstrap/bootstrap.js"></script>
+    <link href="../../../../static/src/css/oj.css" rel="stylesheet">
+    <style>
+        .name-icon {
+            float: left;
+            display: inline-block;
+            width: 37px;
+            height: 37px;
+            margin-top: 4px;
+            margin-right: 20px;
+            margin-left: 40px;
+        }
+
+        .CodeMirror {
+            height: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- nav begin -->
+<nav class="navbar navbar-masthead navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class='name-icon' src="../../../../static/src/img/alibaba.png" alt="">
+            <a class="navbar-brand" href="../index.html">Alibaba OJ</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="problem_list.html">题目</a></li>
+                <li><a href="help.html">帮助</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="login.html">
+                        登录
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container main">
+    <div id="submissionInfo">
+
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-body" id="submissionBody">
+
+        </div>
+    </div>
+    <div id="code-field">
+        <textarea id="code-editor">
+
+        </textarea>
+    </div>
+</div>
+<div class="footer">
+    <p class="text-muted text-center">Copyright © 2016 Alibaba Inc 百年技术大学1605-04小组</p>
+</div>
+<script>
+    var testData =
+    {
+        "problemId": 47,
+        "title": "A+B问题",
+        "description": null,
+        "inputDescription": null,
+        "outputDescription": null,
+        "samples": null,
+        "user_id": '礼蓓',
+        "hint": null,
+        "createTime": '2016年8月17日 13:22',
+        "lastUpdateTime": '2016年8月17日 13:22',
+        "lanauge": 'C',
+        "timeLimit": '1000ms',
+        "memoryLimit": '128M',
+        "visible": null,
+        "totalSubmitNumber": 12,
+        "totalAcceptedNumber": 1,
+        "difficulty": 0,
+        "tags": null,
+        "source": null,
+        'result': '1',
+        'errorInfo':'/var/judger/run/0149eb1332c954a661672d450b61a419/main.c:1:1: error: expected =,asm or __attribute__ at end of input ffffff',
+        'problemTitle': 'A+B问题',
+        'code': '#include <iostream>using namespace std;int main(){int a,b;cin>>a>>b;cout<<a+b;return 0;}'
+    };
+    require(["jquery", "codeMirror"], function ($, codeMirror) {
+        function fillSubmissionInfo(data) {
+            var template =
+                    '<h2 class="text-center" >' + data.problemTitle + '</h2>' +
+                    '<p class="text-muted text-center" >' +
+                    '发布时间:' + data.createTime + '&nbsp;&nbsp;' +
+                    '最后更新:' + data.lastUpdateTime + '&nbsp;&nbsp;' +
+                    '时间限制:' + data.timeLimit + 'ms &nbsp;&nbsp;' +
+                    '内存限制:' + data.memoryLimit + 'M' +
+                    '</p>';
+            $('#submissionInfo').html(template);
+        }
+        function getResults(num) {
+            if(num == 0){
+                return 'accepted'
+            }else if(num == 1){
+                return 'runtime_error'
+            }else if(num == 2){
+                return 'time_limit_exceeded'
+            }else if(num == 3){
+                return 'memory_limit_exceeded'
+            }else if(num == 4){
+                return 'compile_error'
+            }else if(num == 5){
+                return 'format_error'
+            }else if(num == 6){
+                return 'wrong_answer'
+            }else if(num == 7){
+                return 'system_error'
+            }else if(num == 8){
+                return 'judging'
+            }
+        }
+
+        function fillBody(data) {
+            var template = '<h4>运行结果:<span class ="text-danger">'+
+                    getResults(data.result) + '</span></h4>' +
+                    '<pre>'+data.errorInfo+'</pre>';
+            $('#submissionBody').html(template);
+        }
+        function fillTemplate(data) {
+            setCodeMirror(data);
+            fillSubmissionInfo(data);
+            fillBody(data);
+        }
+
+        function setCodeMirror(data) {
+            var langage = '';
+            if (data == 1) {
+                langage = "text/x-csrc";
+            } else if (data == 2) {
+                langage = "text/x-c++src";
+            } else {
+                langage = "text/x-java";
+            }
+            var codeEditor = codeMirror($("#code-editor")[0], langage);
+            codeEditor.setOption("readOnly", true);
+            codeEditor.setValue(data.code);
+        }
+
+        function getSubmissionId() {
+            var submissionId = location.pathname.split("?=")[1];
+            $.ajax({
+                url: '',
+                data: submissionId,
+                dataType: "json",
+                method: "get",
+                async: false,
+                success: function (data) {
+                    fillTemplate(data);
+                }
+            });
+        }
+        fillTemplate(testData);
+    });
+</script>
+</body>
+</html>

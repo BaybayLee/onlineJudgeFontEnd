@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <link rel="shortcut icon" href="../../../../static/src/img/alibaba.png">
+    <script src="../../../../static/src/js/config.js"></script>
+    <script src="../../../../static/src/js/require.js"></script>
+    <script src="../../../../static/src/js/lib/bootstrap/bootstrap.js"></script>
+    <script src="../../../../static/src/js/app/oj/problem/problem.js"></script>
+
+    <!-- global css begin -->
+    <link href="../../../../static/src/css/oj.css" rel="stylesheet">
+    <!-- global css end -->
+    <style>
+        .name-icon {
+            float: left;
+            display: inline-block;
+            width: 37px;
+            height: 37px;
+            margin-top: 4px;
+            margin-right: 20px;
+            margin-left: 40px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- nav begin -->
+<nav class="navbar navbar-masthead navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class='name-icon' src="../../../../static/src/img/alibaba.png" alt="">
+            <a class="navbar-brand" href="/">Alibaba OJ</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="problem_list.html">题目</a></li>
+                <li><a href="help.html">帮助</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="submissions_list.html">我的提交</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="../index.html">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="login.html">
+                        登录
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- nav end -->
+
+<!-- custom body begin -->
+<div class="container main">
+    <h2 class="text-center" id="problem-title"></h2>
+
+    <p class="text-muted text-center" id="problem-basic-info"></p>
+
+    <div>
+        <div class="problem-section">
+            <label class="problem-label">描述</label>
+            <div class="problem-detail" id="problem-detail"></div>
+        </div>
+        <div class="problem-section">
+            <label class="problem-label">输入</label>
+            <p class="problem-detail" id="input-detail"></p>
+        </div>
+        <div class="problem-section">
+            <label class="problem-label">输出</label>
+            <p class="problem-detail" id="output-detail"></p>
+        </div>
+        <div class="problem-section">
+            <label class="problem-label">样例</label>
+            <pre>
+            </pre>
+        </div>
+        <div>
+            <label>选择语言</label>
+            <div>
+                <label class="radio-inline">
+                    <input type="radio" name="language" value="1" checked> C (GCC 4.8)
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="language" value="2"> C++ (G++ 4.3)
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="language" value="3"> Java (Oracle JDK 1.7)
+                </label>
+            </div>
+        </div>
+        <div id="code-field">
+            <label class="problem-label">提交代码</label>
+            <textarea id="code-editor"></textarea>
+        </div>
+        <hr>
+        <div id="submit-code">
+            <button type="button" class="btn btn-primary" id="submit-code-button">
+                提交代码
+            </button>
+            <img src="../../../../static/src/img/loading.gif" id="loading-gif">
+        </div>
+        <div id="result">
+        </div>
+        <hr>
+    </div>
+</div>
+<!-- custom body end -->
+
+
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+          processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+      });
+
+
+</script>
+<script src="https://cdn.bootcss.com/mathjax/2.6.1/MathJax.js"></script><!-- footer begin -->
+<div class="footer">
+    <p class="text-muted text-center">Copyright © 2016 Alibaba Inc 百年技术大学1605-04小组</p>
+</div>
+<!-- footer end -->
+<script>
+    var testData = [
+        {
+            "problemId": 47,
+            "title": "A+B问题",
+            "description": "This is description",
+            "inputDescription": "inputDescription",
+            "outputDescription": "outputDescription",
+            "samples": "samples",
+            "createTime": "createTime",
+            "lastUpdateTime": "lastUpdateTime",
+            "timeLimit": "timeLimit",
+            "memoryLimit": "memoryLimit",
+        }
+    ];
+    require(['jquery'], function ($) {
+        function getUrlParam(name){
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r!=null) return unescape(r[2]);
+            return null;
+        }
+
+        var problemId = getUrlParam('id');
+        $.ajax({
+            method : 'post',
+            url : 'rest/common/getproblembyid',
+            data : {
+                id : problemId
+            }
+        }).done(function(data){
+            $('#problem-title').html(testData[0].title);
+            $('#problem-basic-info').html("发布时间: " + testData[0].createTime +
+                    "最后更新: " + testData[0].lastUpdateTime +
+                    "时间限制: " + testData[0].timeLimit +
+                    "内存限制: " + testData[0].memoryLimit + "M");
+            $('#problem-detail').html(testData[0].description);
+            $('#input-detail').html(testData[0].inputDescription);
+            $('#output-detail').html(testData[0].outputDescription);
+        });
+        $('#problem-title').html(testData[0].title);
+        $('#problem-basic-info').html("发布时间: " + testData[0].createTime +
+                "最后更新: " + testData[0].lastUpdateTime +
+                "时间限制: " + testData[0].timeLimit +
+                "内存限制: " + testData[0].memoryLimit + "M");
+        $('#problem-detail').html(testData[0].description);
+        $('#input-detail').html(testData[0].inputDescription);
+        $('#output-detail').html(testData[0].outputDescription);
+
+
+
+
+    });
+</script>
+</body>
+</html>

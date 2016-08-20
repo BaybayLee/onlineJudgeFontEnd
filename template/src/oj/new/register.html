@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <link rel="shortcut icon" href="../../../../static/src/img/alibaba.png">
+    <script src="../../../../static/src/js/config.js"></script>
+    <script src="../../../../static/src/js/require.js"></script>
+    <script src="../../../../static/src/js/lib/bootstrap/bootstrap.js"></script>
+    <!-- global css begin -->
+    <link href="../../../../static/src/css/oj.css" rel="stylesheet">
+    <!-- global css end -->
+    <style>
+        .name-icon{
+            float: left;
+            display: inline-block;
+            width: 37px;
+            height: 37px;
+            margin-top: 4px;
+            margin-right: 20px;
+            margin-left: 40px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<!-- nav begin -->
+<nav class="navbar navbar-masthead navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class ='name-icon' src="../../../../static/src/img/alibaba.png" alt="">
+            <a class="navbar-brand" href="../index.html">Alibaba OJ</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="problem_list.html">题目</a></li>
+                <li><a href="help.html">帮助</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="login.html">
+                        登录
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container main">
+    <div class="col-md-6 col-md-offset-3">
+        <h2 class="text-center">用户注册</h2>
+
+        <form id="register-form">
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" class="form-control input-lg" id="username" name="username" placeholder="用户名" required autofocus>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">邮箱地址</label>
+                <input type="email" class="form-control input-lg" id="email" name="email" placeholder="邮箱地址"  data-error="请填写正确的邮箱地址" required>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" class="form-control input-lg" id="password" name="password" data-error="请填写密码" placeholder="密码" data-minlength="6" data-minlength-error="密码不得少于6位" required>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">确认密码</label>
+                <input type="password" class="form-control input-lg" id="confirm_password" name="confirm_password"
+                       placeholder="确认密码" data-match="#password" data-match-error="两个密码不一致" data-error="请填写确认密码" required>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="footer">
+    <p class="text-muted text-center">Copyright © 2016 Alibaba Inc 百年技术大学1605-04小组</p>
+</div>
+<script src="../../../../static/src/js/app/oj/account/register.js"></script>
+</body>
+</html>
+

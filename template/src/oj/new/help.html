@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <link rel="shortcut icon" href="../../../../static/src/img/alibaba.png">
+    <script src="../../../../static/src/js/config.js"></script>
+    <script src="../../../../static/src/js/require.js"></script>
+    <script src="../../../../static/src/js/lib/bootstrap/bootstrap.js"></script>
+    <link href="../../../../static/src/css/oj.css" rel="stylesheet">
+    <style>
+        .name-icon{
+            float: left;
+            display: inline-block;
+            width: 37px;
+            height: 37px;
+            margin-top: 4px;
+            margin-right: 20px;
+            margin-left: 40px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- nav begin -->
+<nav class="navbar navbar-masthead navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class ='name-icon' src="../../../../static/src/img/alibaba.png" alt="">
+            <a class="navbar-brand" href="../index.html">Alibaba OJ</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="problem_list.html">题目</a></li>
+                <li><a href="help.html">帮助</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="submissions_list.html">我的提交</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="../index.html">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="login.html">
+                        登录
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container main">
+    <ul class="nav nav-tabs nav-tabs-google">
+        <li role="presentation" class="active">
+            <a href="help.html">帮助</a>
+        </li>
+        <li role="presentation">
+            <a href="about.html">关于</a>
+        </li>
+    </ul>
+    <div>
+        <h2 class="text-center">判题系统</h2>
+        <h4>判题结果</h4>
+        <ul>
+            <li>Accepted: 你的答案符合判题标准</li>
+            <li>Runtime Error: 你的程序运行时出现错误（指针越界，栈溢出，有未处理的异常，主函数返回值非零等）</li>
+            <li>Time Limit Exceeded: 你的程序执行时间超出题目要求</li>
+            <li>Memory Limit Exceeded: 你的程序内存使用超出题目要求</li>
+            <li>Compile Error: 你的程序在编译（包括链接）时出现错误</li>
+            <li>Wrong Answer: 你的程序输出的答案不符合判题标准</li>
+            <li>System Error: 判题系统发生故障，请等待重判</li>
+            <li>Waiting: 你的提交正在等待处理</li>
+        </ul>
+
+        <h4>编译参数</h4>
+        <ul>
+            <li>C（GCC 4.8）</li>
+            <pre>gcc -DONLINE_JUDGE -O2 -w -std=c99 {src_path} -lm -o {exe_path}main</pre>
+            <li>C++（G++ 4.3）</li>
+            <pre>g++ -DONLINE_JUDGE -O2 -w -std=c++11 {src_path} -lm -o {exe_path}main</pre>
+            <li>Java（Oracle JDK 1.7）</li>
+                <pre>
+//编译
+javac {src_path} -d {exe_path}
+//运行
+java -cp {exe_path} Main</pre>
+
+        </ul>
+
+    </div>
+</div>
+<script src="../../../../static/src/js/app/oj/account/login.js"></script>
+<div class="footer">
+    <p class="text-muted text-center">Copyright © 2016 Alibaba Inc 百年技术大学1605-04小组</p>
+</div>
+</body>
+</html>
+
+
+
+
+
